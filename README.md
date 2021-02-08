@@ -1,2 +1,2 @@
 # jsobjgen-app
- gerar objetovs JS via interface
+ gerar objetovs JS via GUI
