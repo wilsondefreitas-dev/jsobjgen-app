@@ -1,29 +1,37 @@
-from jsobjgen import JsObjGen
-# import tkinter as tk # Python 3.x Version
+# from jsobjgen import JsObjGen
+# from jsobjmodel import JsObjModel
 
-# root = tk.Tk()
+# jsobj_model = JsObjModel()
 
-# label = tk.Label(root, text="Hello World!") # Create a text label
-# label.pack(padx=200, pady=200) # Pack it into the window
+# def init():
 
-# root.mainloop()
+#     try:
+#         jsobj_model.update( 'config', open('config.js', 'r').read().split('\n') )
+#         new_file = JsObjGen( 'config', jsobj_model.config )
+#     except:
+#         new_file = JsObjGen( 'config', jsobj_model.config )
 
-print('start!')
+# if __name__ == '__main__':
+#     init()
+    
 
 
-try:
-    new_file = open('config.js', 'r')
-    print(new_file.read())
-except:
-    new_ref = JsObjGen( 'config', ( 
-        { 'attr':'validationMode', 'type':'boolean', 'value':'true' },
-        { 'attr':'primaryColor', 'type':'string', 'value':'#3862A6' },
-        { 'attr':'language', 'type':'select', 'value':'PT', 'options':['PT', 'ES', 'IN'] },
-        { 'attr':'extraButtons', 'type':'array', 'value':'', 'subvalue':[
-            { 'attr':'label', 'type':'string', 'value':'Teste Download' },
-            { 'attr':'type', 'type':'select', 'value':'download', 'options':['download', 'open'] },
-            { 'attr':'file', 'type':'string', 'value':'glossary.html' }
-        ]}
-    ))
 
-    new_ref.saveJsFile()
+import tkinter as tk # Python 3.x Version
+
+root = tk.Tk()
+
+frame_a = tk.Frame()
+
+label = tk.Label(master=frame_a, text="Name")
+
+entry = tk.Entry(master=frame_a)
+
+button = tk.Button(master=frame_a, text="Salvar")
+
+label.pack()
+entry.pack()
+button.pack()
+frame_a.pack()
+
+root.mainloop()
