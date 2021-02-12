@@ -1,7 +1,7 @@
 var config= {
-    validationMode:true,
-    primaryColor:"#3862A6",
-    language:"PT",
+    validationMode:jessica,
+    primaryColor:"jessica",
+    language:"jessica",
     extraButtons:[{
         label:"Baixar PDF",
         type:"download",

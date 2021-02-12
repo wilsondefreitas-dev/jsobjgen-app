@@ -5,7 +5,7 @@ class JsObjGen:
         self.__js_obj = js_obj
         self.__file_name = file_name
 
-        self.__saveJsFile(self)
+        self.__saveJsFile()
 
     @property
     def js_obj(self): return self.__js_obj
