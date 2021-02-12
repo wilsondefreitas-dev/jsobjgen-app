@@ -9,11 +9,11 @@ def init():
 
     try:
         jsobj_model.update( 'config', open('config.js', 'r').read().split('\n') )
-        new_file = JsObjGen( 'config', jsobj_model.config )
+        jsobj_gen = JsObjGen( 'config', jsobj_model.config )
     except:
-        new_file = JsObjGen( 'config', jsobj_model.config )
+        jsobj_gen = JsObjGen( 'config', jsobj_model.config )
 
-    GUI.generate( jsobj_model.config )
+    GUI.generate( jsobj_model.config, jsobj_gen )
 
 if __name__ == '__main__':
     init()

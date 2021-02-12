@@ -5,15 +5,13 @@ class JsObjGen:
         self.__js_obj = js_obj
         self.__file_name = file_name
 
-        self.__saveJsFile()
-
     @property
     def js_obj(self): return self.__js_obj
 
     @property
     def file_name(self): return self.__file_name
 
-    def __saveJsFile(self):
+    def saveJsFile(self):
 
         new_file = open('{}.js'.format(self.file_name), 'w', encoding='UTF-8')
         new_file.write('var {}'.format(self.file_name)) 
@@ -29,9 +27,9 @@ class JsObjGen:
     
     def __format_attr_value(self, data):
         
-        if data.type == 'boolean':
+        if data.type == 'boolean' or data.type == 'logochooser':
             return '    {0}:{1},\n'.format( data.name, data.value )
-        if data.type == 'string' or data.type == 'select' :
+        if data.type == 'string' or data.type == 'select' or data.type == 'colorpicker':
             return '    {0}:"{1}",\n'.format( data.name, data.value )
         if data.type == 'array':
             new_str = ''
@@ -41,5 +39,6 @@ class JsObjGen:
 
             return '    {0}:[{1}\n{2}    {3}],\n'.format( data.name, '{', new_str, '}' )
         else: 
-            return 'ola'
+            return ''
+
 
