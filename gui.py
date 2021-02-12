@@ -1,213 +1,77 @@
 from tkinter import *
+import PySimpleGUI as sg
 
 class Gui:
 
     def __init__(self) -> None:
 
-        self.__root = Tk()
-        self.__configure()
+        self.__configInputElements = []
 
         pass
 
-    def __configure(self) -> None:
+    def generate(self, js_obj) -> None:
 
-        self.__root.resizable(False, False)
-        self.__root.geometry('538x700')
-        self.__root.title('jsObj-Gen for Akira')
+        sg.theme('LightBrown1')
 
-        top_frame = Frame(self.__root, bg="blue", width=540, height=80)
+        self.generateInputLayout(js_obj)
+        tab2_layout = [[sg.T('This is inside tab 2')]]  
 
-        button1 = Button(top_frame, text = "Config.js", height=3, width=37)
-        button2 = Button(top_frame, text = "Structure.js", height=3, width=37)
+        layout = [ 
+                   [ sg.TabGroup( [ [ sg.Tab('Config.JS', self.__configInputElements), sg.Tab('Structure.js', tab2_layout) ] ], ) ],    
+                   [sg.Button('Salvar')]
+                 ]    
 
-        button1.grid(row=0,column=0)
-        button2.grid(row=0,column=1)
+        # Create the Window
+        # window = sg.Window('JSOBJ-GEN 4 Akira', layout)
+        window = sg.Window('JSOBJ-GEN 4 Akira').Layout([[sg.Column(layout, size=(450, 700), scrollable=True, vertical_scroll_only=True)]])
 
-        top_frame.pack()
+        # Event Loop to process "events"
+        while True:             
+            event, values = window.read()
+            if event in (sg.WIN_CLOSED, 'Cancel'):
+                break
 
-        input_main_frame = Frame(self.__root, bg="blue", width=540, height=600)
-        input_main_frame.pack()
-
-        input_frame = Frame(input_main_frame, width=540, height=50)
-        input_frame.pack()
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        label = Label(input_frame, text = "Modo Navegação:", height=2, width=20)
-        entry = Entry(input_frame, width=37)
-
-        label.grid(column=0)
-        entry.grid(column=1)
-
-        # leftframe = Frame(main_frame)
-        # leftframe.pack(side=LEFT)
-        
-        # rightframe = Frame(main_frame)
-        # rightframe.pack(side=RIGHT)
-
-        # label = Label(leftframe, text = "Hello world")
-        # label.pack()
-
-        # label = Label(rightframe, text = "Hello world")
-        # label.pack()
+        window.close()
 
 
+    def generateInputLayout(self, js_obj, subvalue=[]) -> list:
 
-    def show(self) -> None:
+        obj_to_read = []
 
-        self.__root.mainloop()
+        if (len(subvalue) > 0): 
+            obj_to_read = subvalue
+        else: 
+            obj_to_read = js_obj
 
-    
+        for data in obj_to_read:
 
-            
-# from tkinter import *
+            print(data.label)
 
-# from tkinter import *  
-  
-# top = Tk()  
-  
-# top.geometry("400x250")  
-  
-# name = Label(top, text = "Name").place(x = 30,y = 50)  
-  
-# email = Label(top, text = "Email").place(x = 30, y = 90)  
-  
-# password = Label(top, text = "Password").place(x = 30, y = 130)  
-  
-# sbmitbtn = Button(top, text = "Submit",activebackground = "pink", activeforeground = "blue").place(x = 30, y = 170)  
-  
-# e1 = Entry(top).place(x = 80, y = 50)  
-  
-  
-# e2 = Entry(top).place(x = 80, y = 90)  
-  
-  
-# e3 = Entry(top).place(x = 95, y = 130)  
-  
-# top.mainloop()  
+            if data.type == 'boolean':
+
+                self.__configInputElements.append( [ sg.Text(data.label, tooltip=data.tip), sg.Checkbox('Ativar', tooltip=data.tip) ] )
+
+            elif data.type == 'string':
+
+                self.__configInputElements.append( [sg.Text(data.label, tooltip=data.tip), sg.InputText(size=(15, 15), default_text=data.value)] )
+
+            elif data.type == 'colorpicker':
+
+                self.__configInputElements.append( [sg.Text(data.label, tooltip=data.tip), sg.InputText(size=(15, 15), default_text=data.value, tooltip=data.tip), sg.ColorChooserButton('Escolher Cor') ] )
+                
+            elif data.type == 'logochooser':
+
+                self.__configInputElements.append( [ sg.Text(data.label, tooltip=data.tip), sg.Checkbox('Ativar', tooltip=data.tip), sg.FileBrowse('Escolher Logo') ] )
+
+            elif data.type == 'select':
+
+                self.__configInputElements.append( [sg.Text(data.label, tooltip=data.tip), sg.Combo(data.options, default_value=data.value, size=(10, 10), readonly=True, tooltip=data.tip)] )
+
+            elif data.type == 'array':
+
+                self.__configInputElements.append([sg.Text(data.label + ' ' + ('-'*80), tooltip=data.tip)])
+                self.generateInputLayout(js_obj, subvalue=data.subvalue) 
+
+            elif data.type == 'add_button':
+
+                self.__configInputElements.append([sg.Button(data.label, tooltip=data.tip)])

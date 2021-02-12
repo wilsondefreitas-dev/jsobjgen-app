@@ -6,16 +6,54 @@ class JsObjModel:
         
         self.config = [  
 
-            Attr('Modo de Validação', 'validationMode','boolean', 'true'),
-            Attr('Cor Primária', 'primaryColor','string', '#3862A6'),
-            Attr('Idioma', 'language','select', 'PT', ['PT', 'ES', 'IN']),
-            Attr('Botões Extras', 'extraButtons','array', '', [], [
+            Attr('Modo de Validação', 'validationMode','boolean', 'true', tip='Libera a navegação do treinamento, permitindo que o usuário consiga avançar, voltar e navegar a vontade pelo menu. Indicado para validação.'),
 
-                Attr('Label', 'label','string', 'Baixar PDF'),
-                Attr('Tipo', 'type','select', 'download', ['download', 'open']),
-                Attr('Arquivo', 'file','string', 'glossary.html'),
+            Attr('Cor Primária', 'primaryColor','colorpicker', '#3862A6', tip='Definir cor primária do player em hexadecimal ou rgb. Indicado usar uma cor escura.'),
 
-            ])
+            Attr('Cor Secundária', 'secondaryColor','colorpicker', '#559A73', tip='Definir cor secundária do player em hexadecimal ou rgb. Indicado usar uma cor clara.'),
+
+            Attr('Legenda', 'subtitleOn','boolean', 'true', tip='Ativar legenda no treinamento. Também ativa o botão de ligar e desligar legenda no menu principal do player.'),
+
+            Attr('Locução', 'locutionOn','boolean', 'false', tip='Ativar a locução no treinamento. Também ativa o botão de ligar e desligar locução no menu principal do player. Ativar apenas se já tiver os áudios na pasta "_content/sound".'),
+
+            Attr('Som', 'soundOn','boolean', 'true', tip='Ativar efeitos sonoros e trilhas no treinamento. Também ativa o botão de ligar e desligar sons no menu principal do player.'),
+
+            Attr('Topo', 'showTop','boolean', 'true', tip='Ativar topo do player.'),
+            
+            Attr('Logo no Topo', 'logoOn','logochooser', 'true', tip='Ativar o logo no topo do player. Inserir logo na pasta "_content/images".'),
+            Attr('Paginação', 'pageNumberOnTop','boolean', 'true', 'Mostrar páginação do treinamento no topo.'),
+
+            Attr('Pontuação', 'gameMode','boolean', 'false', tip='Ativar display com pontuação no topo do player. Indicado para games.'),
+
+            Attr('Progresso', 'progressCourse','boolean', 'false', tip='Mostrar progresso do usuário no treinamento em porcentagem no topo.'),
+
+            Attr('Icone da Pontuação', 'iconOnGame','boolean', 'false', tip='Mostrar ícone na pontuação.'),
+
+            Attr('Ver Tudo', 'seeAllPages','boolean', 'true', tip='Ativar obrigatoriedade de visualizar todas as telas para completar o treinamento. Indicado para treinamentos com a navegação liberada.'),
+            
+            Attr('Idioma', 'language','select', 'PT', options=['PT', 'ES', 'IN'], tip='Selecionar idioma do Akira.'),
+
+            Attr('Ativar Teclado', 'activeKeyboard','boolean', 'true', tip='Liberar ações básicas de navegação do Akira para serem executadas pelo teclado. Indicado para versões acessíveis.'),
+
+            Attr('Salvar Dados Locais', 'storageIsOn','boolean', 'false', tip='Ativa o registro de dados no LocalStorage do navegador. Permitindo que o usuário tenha alguns dados de sua navegação salvos em seu navegador, como em um LMS. Indicado para treinamentos que não irão rodar em um LMS.'),
+
+            Attr('API OnePage', 'onePage','boolean', 'false', tip='Integrar com OnePage'),
+
+            Attr('Vídeo Suporte', 'libraOn','boolean', 'false', tip='Ativar os vídeos de apoio que são executados em conjunto com a legenda. Indicado para libras.'),
+
+            Attr('Glossário', 'glossaryOn','boolean', 'false', tip='Ativar glossário.'),
+
+            Attr('Botões Extras', 'extraButtons','array', '', options=[], subvalue=[
+
+                Attr('-----> Label', 'label','string', 'Baixar PDF', tip='Definir nome do botão extra.'),
+
+                Attr('-----> Tipo', 'type','select', 'download', options=['download', 'open'], tip='Selecionar tipo do botão extra.'),
+
+                Attr('-----> Arquivo', 'file','string', 'glossary.html', tip='Definir nome do arquivo da ação escolhida.'),
+
+                Attr('Adicionar Botão', None,'add_button', None, tip='Inserir mais um botão.')
+
+            ], tip='Inserir botões extras no menu e navegação.')
         
         ]
 

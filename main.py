@@ -13,7 +13,7 @@ def init():
     except:
         new_file = JsObjGen( 'config', jsobj_model.config )
 
-    GUI.show()
+    GUI.generate( jsobj_model.config )
 
 if __name__ == '__main__':
     init()
