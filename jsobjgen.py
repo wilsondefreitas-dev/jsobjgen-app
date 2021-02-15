@@ -27,9 +27,9 @@ class JsObjGen:
     
     def __format_attr_value(self, data):
         
-        if data.type == 'boolean' or data.type == 'logochooser':
+        if data.type == 'boolean' or data.type == 'boolean_and_chooser':
             return '    {0}:{1},\n'.format( data.name, data.value )
-        if data.type == 'string' or data.type == 'select' or data.type == 'colorpicker':
+        if data.type == 'string' or data.type == 'select' or data.type == 'colorpicker' or data.type == 'string_and_file_chooser':
             return '    {0}:"{1}",\n'.format( data.name, data.value )
         if data.type == 'array':
             new_str = ''

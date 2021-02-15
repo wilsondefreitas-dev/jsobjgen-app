@@ -14,16 +14,17 @@ class Gui:
         sg.theme('LightBrown1')
 
         self.generateInputLayout(js_obj)
-        tab2_layout = [[sg.T('This is inside tab 2')]]  
+        tab2_layout = [[sg.T('This is inside tab 2')]] 
+        tab3_layout = [[sg.T('This is inside tab 3')]]  
 
         layout = [ 
-                   [ sg.TabGroup( [ [ sg.Tab('Config.JS', self.__configInputElements), sg.Tab('Structure.js', tab2_layout) ] ], ) ],    
+                   [ sg.TabGroup( [ [ sg.Tab('Config.JS', self.__configInputElements), sg.Tab('Structure.js', tab2_layout), sg.Tab('Glossary.js', tab3_layout) ] ], ) ],    
                    [sg.Button('Salvar')]
                  ]    
 
         # Create the Window
         # window = sg.Window('JSOBJ-GEN 4 Akira', layout)
-        window = sg.Window('JSOBJ-GEN 4 Akira').Layout([[sg.Column(layout, size=(450, 780), scrollable=True, vertical_scroll_only=True)]])
+        window = sg.Window('JSOBJ-GEN 4 Akira').Layout([[sg.Column(layout, size=(450, 543), scrollable=True, vertical_scroll_only=True)]])
 
         # Event Loop to process "events"
         while True:     
@@ -69,9 +70,13 @@ class Gui:
 
                 self.__configInputElements.append( [sg.Text(data.label, tooltip=data.tip), sg.InputText(size=(15, 15), default_text=data.value, tooltip=data.tip, key=('_{}_'.format(data.name))), sg.ColorChooserButton('Escolher Cor') ] )
                 
-            elif data.type == 'logochooser':
+            elif data.type == 'boolean_and_chooser':
 
                 self.__configInputElements.append( [ sg.Text(data.label, tooltip=data.tip), sg.Checkbox('Ativar', tooltip=data.tip, key=('_{}_'.format(data.name))), sg.FileBrowse('Escolher Logo') ] )
+
+            elif data.type == 'string_and_file_chooser':
+
+                self.__configInputElements.append( [ sg.Text(data.label, tooltip=data.tip), sg.Checkbox('Ativar', tooltip=data.tip, key=('_{}_'.format(data.name))), sg.FileBrowse('Escolher Arquivo') ] )
 
             elif data.type == 'select':
 
