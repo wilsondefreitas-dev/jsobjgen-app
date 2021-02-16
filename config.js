@@ -13,6 +13,14 @@ var config= {
     onePage:false,
     libraOn:false,
     glossaryOn:false,
-    extraButtons:[{
-        }],
+    extraButtons:[
+        {
+    label:"Baixar PDF",
+        file:"False"
+    },
+        {
+    label:"Baixar PDF",
+        file:"False"
+    },
+        ],
 }

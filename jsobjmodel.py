@@ -44,17 +44,16 @@ class JsObjModel:
 
             Attr('Glossário', 'glossaryOn','boolean', 'false', tip='Ativar glossário.'),
 
-            Attr('Botões Extras', 'extraButtons','array', '', options=[], subvalue=[
-
-                Attr('-----> Label', 'label','string', 'Baixar PDF', tip='Definir nome do botão extra.'),
-
-                # Attr('-----> Tipo', 'type','select', 'download', options=['download', 'open'], tip='Selecionar tipo do botão extra.'),
-
-                Attr('-----> Arquivo', 'file','string_and_file_chooser', 'glossary.html', tip='Definir nome do arquivo da ação escolhida.'),
+            Attr('Botões Extras', 'extraButtons','array', '', tip='Inserir botões extras no menu e navegação.', subvalue=[
 
                 Attr('Adicionar Botão', None,'add_button', None, tip='Inserir mais um botão.')
 
-            ], tip='Inserir botões extras no menu e navegação.')
+            ], add_model=[
+                    
+                    Attr('-----> Arquivo', 'file','string_and_file_chooser', 'glossary.html', tip='Definir nome do arquivo da ação escolhida.', object_end=True),
+                    Attr('-----> Label', 'label','string', 'Baixar PDF', tip='Definir nome do botão extra.', object_init=True)
+
+            ])
         
         ]
 

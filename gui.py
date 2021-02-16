@@ -6,27 +6,30 @@ class Gui:
     def __init__(self) -> None:
 
         self.__configInputElements = []
+        self.__js_obj = None
+        self.__main_layout = None
 
         pass
 
     def generate(self, js_obj, jsobj_gen) -> None:
 
+        self.__configInputElements =[]
+        self.__js_obj = js_obj
+
         sg.theme('LightBrown1')
 
         self.generateInputLayout(js_obj)
-        tab2_layout = [[sg.T('This is inside tab 2')]] 
-        tab3_layout = [[sg.T('This is inside tab 3')]]  
 
-        layout = [ 
-                   [ sg.TabGroup( [ [ sg.Tab('Config.JS', self.__configInputElements), sg.Tab('Structure.js', tab2_layout), sg.Tab('Glossary.js', tab3_layout) ] ], ) ],    
+        def tab2_layout(): return [[sg.T('This is inside tab 2')]] 
+        def tab3_layout(): return [[sg.T('This is inside tab 3')]]  
+
+        self.__main_layout = [ 
+                   [ sg.TabGroup( [ [ sg.Tab('Config.JS', self.__configInputElements), sg.Tab('Structure.js', tab2_layout()), sg.Tab('Glossary.js', tab3_layout()) ] ], ) ],    
                    [sg.Button('Salvar')]
                  ]    
 
-        # Create the Window
-        # window = sg.Window('JSOBJ-GEN 4 Akira', layout)
-        window = sg.Window('JSOBJ-GEN 4 Akira').Layout([[sg.Column(layout, size=(450, 543), scrollable=True, vertical_scroll_only=True)]])
+        window = sg.Window('JSOBJ-GEN 4 Akira').Layout([[sg.Column(self.__main_layout, size=(450, 543), scrollable=True, vertical_scroll_only=True)]])
 
-        # Event Loop to process "events"
         while True:     
             event, values = window.read()
 
@@ -39,7 +42,16 @@ class Gui:
                         for subattr in data.subvalue:
 
                             subattr.value = values['_{}_'.format(subattr.name)]
+                            
                 except: pass
+
+            if event == '_add_button_':
+
+                for value in data.add_model:
+                    data.subvalue.insert(0, value)
+
+                window.hide()
+                self.generate( js_obj, jsobj_gen )
 
             if event == 'Salvar':
                 jsobj_gen.saveJsFile()
@@ -89,4 +101,4 @@ class Gui:
 
             elif data.type == 'add_button':
 
-                self.__configInputElements.append([sg.Button(data.label, tooltip=data.tip)])
+                self.__configInputElements.append([sg.Button(data.label, tooltip=data.tip, key=('_{}_'.format(data.type)))])

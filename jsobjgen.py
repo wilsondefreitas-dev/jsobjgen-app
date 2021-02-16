@@ -26,18 +26,24 @@ class JsObjGen:
         return new_file
     
     def __format_attr_value(self, data):
+
+        def check_obj_init() -> str: 
+            return '{\n    ' if data.object_init else '' 
+
+        def check_obj_end() -> str: 
+            return '\n    }' if data.object_end else '' 
         
         if data.type == 'boolean' or data.type == 'boolean_and_chooser':
             return '    {0}:{1},\n'.format( data.name, data.value )
         if data.type == 'string' or data.type == 'select' or data.type == 'colorpicker' or data.type == 'string_and_file_chooser':
-            return '    {0}:"{1}",\n'.format( data.name, data.value )
+            return '    {2}{0}:"{1}"{3},\n'.format( data.name, data.value, check_obj_init(), check_obj_end())
         if data.type == 'array':
             new_str = ''
 
             for subvalue in data.subvalue:
                 new_str += ( '    {}'.format( self.__format_attr_value(subvalue) ) ) 
 
-            return '    {0}:[{1}\n{2}    {3}],\n'.format( data.name, '{', new_str, '}' )
+            return '    {0}:[\n{2}    ],\n'.format( data.name, '{', new_str, '}' )
         else: 
             return ''
 
