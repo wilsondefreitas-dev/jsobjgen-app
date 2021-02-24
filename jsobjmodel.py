@@ -1,3 +1,4 @@
+from PySimpleGUI.PySimpleGUI import Print
 from attribute import Attr
 
 class JsObjModel:
@@ -50,8 +51,10 @@ class JsObjModel:
 
             ], add_model=[
                     
-                    Attr('-----> Arquivo', 'file','string_and_file_chooser', 'glossary.html', tip='Definir nome do arquivo da ação escolhida.', object_end=True),
-                    Attr('-----> Label', 'label','string', 'Baixar PDF', tip='Definir nome do botão extra.', object_init=True)
+                    # Attr('-----> Label', 'label','string', 'Baixar PDF', tip='Definir nome do botão extra.', object_init='{\n'),
+                    { 'label': '-----> Label', 'name':'label','type':'string', 'value':'Baixar PDF', 'tip':'Definir nome do botão extra', 'object_init': '{', 'object_end': '' },
+                    { 'label': '-----> Arquivo', 'name':'file','type':'string_and_file_chooser', 'value':'glossary.html', 'tip':'Definir nome do arquivo da ação escolhida', 'object_init': '', 'object_end': '}' }
+                    # Attr('-----> Arquivo', 'file','string_and_file_chooser', 'glossary.html', tip='Definir nome do arquivo da ação escolhida.', object_end='\n}')
 
             ])
         
@@ -59,10 +62,14 @@ class JsObjModel:
 
     def update(self, file_name, file_content) -> None:
 
+        startArray = False
+
+        #loop no arquivo
         for data in file_content:
 
             data = data.strip().replace(',', '').split(':')
 
+            #loop no modelo
             for attr in self.config:
 
                 if attr.name == data[0]:
@@ -73,17 +80,32 @@ class JsObjModel:
 
                     else:
 
-                        for subattr in attr.subvalue:
+                        subvalue_index = 0
 
-                            for data in file_content:
+                        for data2 in file_content:
+                            
 
-                                data = data.strip().replace(',', '').split(':')
+                            if '[' in data2[len(data2)-1]: startArray = True
+                            elif ']' in data2[len(data2)-2:len(data2)]: startArray = False
+                            elif '],' in data2[len(data2)-2:len(data2)]: startArray = False
 
-                                if data[0] == subattr.name:
+                            data2 = data2.strip().replace(',', '').split(':')
 
-                                    subattr.value = data[1].replace('"', '')
+                            if startArray:
 
+                                for index in range(len(attr.add_model)):
 
-                    break 
+                                    if attr.add_model[index]['name'] == data2[0].replace('{', ''):
 
-    
+                                        attr.subvalue.insert(
+                                            subvalue_index, 
+                                            Attr(attr.add_model[index]['label'], 
+                                                 attr.add_model[index]['name'], 
+                                                 attr.add_model[index]['type'],  
+                                                 data2[1].replace('"', '').replace('}', ''), 
+                                                 attr.add_model[index]['tip'], 
+                                                 object_init=attr.add_model[index]['object_init'], 
+                                                 object_end=attr.add_model[index]['object_end'] ))
+
+                                        subvalue_index += 1
+                                    

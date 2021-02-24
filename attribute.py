@@ -1,6 +1,10 @@
 class Attr:
 
-    def __init__(self, label, name, type, value, options = [], subvalue = [], tip='', add_model=[], object_init=False, object_end=False) -> None:
+    __id = 0
+
+    def __init__(self, label, name, type, value, options = [], subvalue = [], tip='', add_model=[], object_init='', object_end='') -> None:
+
+        global id
 
         self.__label = label
         self.__name = name
@@ -12,9 +16,9 @@ class Attr:
         self.__add_model = add_model
         self.__object_init = object_init
         self.__object_end = object_end
+        self.__id = Attr.__id
 
-        print(self.__label)
-        print(self.__add_model)
+        Attr.__id += 1
 
     @property
     def label(self) -> str:
@@ -23,6 +27,10 @@ class Attr:
     @property
     def name(self) -> str:
         return self.__name
+
+    @name.setter
+    def name(self, value) -> None:
+        self.__name = value
 
     @property
     def type(self) -> str:
@@ -59,5 +67,9 @@ class Attr:
     @property
     def object_end(self) -> list:
         return self.__object_end
+
+    @property
+    def id(self) -> str:
+        return self.__id
 
         

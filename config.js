@@ -1,26 +1,26 @@
 var config= {
     validationMode:true,
-    primaryColor:"#3862A6",
-    secondaryColor:"#559A73",
+    primaryColor:"#3862a6",
+    secondaryColor:"#559a73",
     subtitleOn:true,
     soundOn:true,
     showTop:true,
     pageNumberOnTop:true,
-    logoOn:False,
+    logoOn:true,
     progressCourse:false,
     gameMode:false,
-    language:"PT",
+    language:"pt",
     onePage:false,
     libraOn:false,
     glossaryOn:false,
     extraButtons:[
-        {
-    label:"Baixar PDF",
-        file:"False"
-    },
-        {
-    label:"Baixar PDF",
-        file:"False"
-    },
+        {label:"Baixar PDF 1",
+        file:"glossary.html"},
+        {label:"Baixar PDF 2",
+        file:"glossary.html"},
+        {label:"Baixar PDF 3",
+        file:"glossary.html"},
+        {label:"Baixar PDF 4",
+        file:"glossary.html"},
         ],
 }
