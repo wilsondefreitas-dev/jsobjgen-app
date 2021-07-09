@@ -12,7 +12,6 @@ class JsObjGen:
         new_file.write('= {\n')
         
         for data in self.js_obj:
-            print(data.name, ':', data.value)
             new_file.write( self.__format_attr_value(data) )
         
         new_file.write('}')

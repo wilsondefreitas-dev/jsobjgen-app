@@ -72,4 +72,8 @@ class Attr:
     def id(self) -> str:
         return self.__id
 
+    @value.setter
+    def fileurl(self, fileurl) -> None:
+        self.__fileurl = fileurl
+
         
